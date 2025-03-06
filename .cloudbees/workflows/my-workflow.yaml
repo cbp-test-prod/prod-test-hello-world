@@ -18,7 +18,7 @@ jobs:
         with:
           content: |-
             ## Test markup and property rendering - Build - Evidence I
-              - Run ID: ${{ vars.environment}}
+              - Run ID: {{ vars.environment}}
               - [backend.tar](https://ourcompany.com/repo/backend.tar)
             Character code - '&#124;'
            
