@@ -10,12 +10,12 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "hello world"
+          echo "hello world from Build"
       - name: Publish workflow evidence item - I
         uses: cloudbees-io/publish-evidence-item@v1
         with:
           content: |-
-            ## Test markup and property rendering - Evidence I
+            ## Test markup and property rendering - Build - Evidence I
               - Run ID: ${{ cloudbees.run_id }}
               - [backend.tar](https://ourcompany.com/repo/backend.tar)
             Character code - '&#124;'
@@ -25,7 +25,31 @@ jobs:
         uses: cloudbees-io/publish-evidence-item@v1
         with:
           content: |-
-            ## Test markup and property rendering - Evidence II
+            ## Test markup and property rendering - Build -  Evidence II
+              - Run ID: ${{ cloudbees.run_id }}
+              - [backend.tar](https://ourcompany.com/repo/backend.tar)
+          format: MARKDOWN
+  stage:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world from stage"
+      - name: Publish workflow evidence item - I
+        uses: cloudbees-io/publish-evidence-item@v1
+        with:
+          content: |-
+            ## Test markup and property rendering - Stage - Evidence I
+              - Run ID: ${{ cloudbees.run_id }}
+              - [backend.tar](https://ourcompany.com/repo/backend.tar)
+            Character code - '&#124;'
+          format: MARKDOWN
+      - name: Publish workflow evidence item - II
+        uses: cloudbees-io/publish-evidence-item@v1
+        with:
+          content: |-
+            ## Test markup and property rendering - Stage - Evidence II
               - Run ID: ${{ cloudbees.run_id }}
               - [backend.tar](https://ourcompany.com/repo/backend.tar)
           format: MARKDOWN
